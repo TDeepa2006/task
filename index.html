@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimalist Music Player | Deepa T</title>
+  <style>
+    :root {
+      --bg-color: #ced5e0;
+      --card-bg: #ffffff;
+      --accent: #2d3436; /* Decent Slate Grey */
+      --secondary-text: #636e72;
+      --border: #dfe6e9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* CLEAN WHITE CARD */
+    .player-card {
+      background: var(--card-bg);
+      width: 340px;
+      padding: 40px 30px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    /* ROTATING SYMBOL - NO GLOW */
+    .music-icon-circle {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 30px;
+      background: #95bbe0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      animation: rotate 10s linear infinite;
+    }
+
+    .music-icon-circle span {
+      font-size: 3rem;
+      color: var(--accent);
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .song-title {
+      color: var(--accent);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .artist {
+      color: var(--secondary-text);
+      font-size: 0.9rem;
+      margin-bottom: 30px;
+    }
+
+    /* PROGRESS BAR - MATTE STYLE */
+    .progress-container {
+      width: 100%;
+      height: 4px;
+      background: #eee;
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+
+    .progress-fill {
+      width: 35%;
+      height: 100%;
+      background: var(--accent);
+      border-radius: 10px;
+    }
+
+    .time {
+      display: flex;
+      justify-content: space-between;
+      color: #b2bec3;
+      font-size: 0.75rem;
+      margin-bottom: 30px;
+    }
+
+    /* CONTROLS */
+    .main-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.9);
+    }
+
+    /* LIKE BUTTON LOGIC */
+    .like-btn {
+      color: #f0dddd; /* Default grey */
+      transition: color 0.3s ease;
+    }
+    
+    .like-btn.liked {
+      color: #ff4757; /* Solid red, no glow */
+    }
+
+    .play-circle {
+      width: 60px;
+      height: 60px;
+      background: var(--accent);
+      color: rgb(225, 212, 212);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    /* SHUFFLE BELOW */
+    .shuffle-container {
+      margin-top: 10px;
+    }
+
+    .shuffle-text {
+      font-size: 0.75rem;
+      color: #b2bec3;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .shuffle-text:hover {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="player-card">
+    <div class="music-icon-circle">
+      <span>♪</span>
+    </div>
+
+    <div class="info">
+      <h2 class="song-title">Golden Hour</h2>
+      <p class="artist">Deepa T • Software Beats</p>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-fill"></div>
+    </div>
+    <div class="time">
+      <span>1:10</span>
+      <span>3:45</span>
+    </div>
+
+    <div class="main-controls">
+      <button class="btn like-btn" id="likeBtn" onclick="toggleLike()">❤</button>
+      <button class="btn">⏮</button>
+      <button class="btn play-circle">▶</button>
+      <button class="btn">⏭</button>
+      <button class="btn">≡</button>
+    </div>
+
+    <div class="shuffle-container">
+      <span class="shuffle-text">Shuffle Mode: Off</span>
+    </div>
+  </div>
+
+  <script>
+    function toggleLike() {
+      const btn = document.getElementById('likeBtn');
+      btn.classList.toggle('liked');
+    }
+  </script>
+
+</body>
+</html>
